@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 const MAX_SPEED = 175
-const ACCELERATION = 1250
-const FRICTION = 1250
+const ACCELERATION = 2000
+const FRICTION = 2000
 
 var velocity = Vector2.ZERO
 
@@ -18,4 +18,4 @@ func _physics_process(delta):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	
-	move_and_collide(velocity * delta)
+	velocity = move_and_slide(velocity)

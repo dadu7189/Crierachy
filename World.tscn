@@ -23,3 +23,8 @@ hframes = 6
 position = Vector2( -1, -1 )
 rotation = 1.69646
 shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, -1, 18, 90, 34, 125, 20, 150, 78, 154, 82, 134, 123, 161, 188, 159, 182, 139, 230, 131, 281, 151, 294, 116, 264, 88, 290, 55, 293, 15, 293, -1, 320, -1, 320, 180, 1, 180 )
