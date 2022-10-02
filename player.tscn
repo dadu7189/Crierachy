@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fullSheet.png" type="Texture" id=2]
@@ -22,6 +22,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 5, 4 ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "CryDance"
+length = 1.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 8, 4, 8, 4, 6, 8, 7, 8 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -102,6 +119,9 @@ tracks/0/keys = {
 [sub_resource type="AnimationNodeAnimation" id=22]
 animation = "Cry"
 
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "CryDance"
+
 [sub_resource type="AnimationNodeAnimation" id=7]
 animation = "RunLeft"
 
@@ -155,6 +175,8 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachine" id=12]
 states/Cry/node = SubResource( 22 )
 states/Cry/position = Vector2( 752, 92 )
+states/CryDance/node = SubResource( 24 )
+states/CryDance/position = Vector2( 428, 169 )
 states/Idle/node = SubResource( 11 )
 states/Idle/position = Vector2( 405, 92 )
 states/Run/node = SubResource( 14 )
@@ -187,6 +209,7 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Cry = SubResource( 21 )
+anims/CryDance = SubResource( 23 )
 anims/RESET = SubResource( 2 )
 anims/RunDown = SubResource( 6 )
 anims/RunLeft = SubResource( 5 )
