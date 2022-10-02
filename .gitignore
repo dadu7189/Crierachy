@@ -2,3 +2,5 @@
 export.cfg
 export_presets.cfg
 *.png~
+
+.DS_Store
