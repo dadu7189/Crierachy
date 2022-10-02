@@ -4,19 +4,34 @@ const MAX_SPEED = 100
 const ACCELERATION = 1000
 const FRICTION = 5000
 
+enum {
+	MOVE,
+	CRY
+}
+
+var state = MOVE
 var velocity = Vector2.ZERO
 
 onready var animationPlayer = $AnimationPlayer
 onready var animationTree = $AnimationTree
 onready var animationState = animationTree.get("parameters/playback")
 
-
+func _ready():
+	animationTree.active = true
+	
 func _physics_process(delta):
+	if state == MOVE:
+		move_state(delta)
+	elif state == CRY:
+		cry_state(delta)
+
+	
+func move_state(delta):
 	var input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
-	
+
 	if input_vector != Vector2.ZERO:
 		animationTree.set("parameters/Idle/blend_position", input_vector)
 		animationTree.set("parameters/Run/blend_position", input_vector)
@@ -25,5 +40,17 @@ func _physics_process(delta):
 	else:
 		animationState.travel("Idle")
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-	
+
 	velocity = move_and_slide(velocity)
+	
+	if Input.is_action_just_pressed("cry"):
+		state = CRY
+
+func cry_state(delta):
+	animationState.travel("CryDance")
+	
+func cry_animation_finished():
+	if Input.is_action_pressed("cry"):
+		state = CRY
+	else:
+	 state = MOVE

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fullSheet.png" type="Texture" id=2]
@@ -39,6 +39,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 5, 8, 4, 8, 4, 6, 8, 7, 8 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "cry_animation_finished"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -172,16 +186,20 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=20]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
 [sub_resource type="AnimationNodeStateMachine" id=12]
 states/Cry/node = SubResource( 22 )
 states/Cry/position = Vector2( 752, 92 )
 states/CryDance/node = SubResource( 24 )
-states/CryDance/position = Vector2( 428, 169 )
+states/CryDance/position = Vector2( 405, 178 )
 states/Idle/node = SubResource( 11 )
 states/Idle/position = Vector2( 405, 92 )
 states/Run/node = SubResource( 14 )
 states/Run/position = Vector2( 588, 92 )
-transitions = [ "Idle", "Run", SubResource( 19 ), "Run", "Idle", SubResource( 20 ) ]
+transitions = [ "Idle", "Run", SubResource( 19 ), "Run", "Idle", SubResource( 20 ), "Idle", "CryDance", SubResource( 25 ), "CryDance", "Idle", SubResource( 26 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=13]
