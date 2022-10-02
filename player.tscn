@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player/player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/fullSheet.png" type="Texture" id=2]
+[ext_resource path="res://art/cubeShadow.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.1421
@@ -147,11 +148,17 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Shadow" type="Sprite" parent="."]
+position = Vector2( -0.6, -0.5 )
+scale = Vector2( 1.1, 1 )
+texture = ExtResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 hframes = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -1, -1 )
 rotation = 1.69646
 shape = SubResource( 1 )
@@ -170,3 +177,6 @@ active = true
 parameters/playback = SubResource( 13 )
 parameters/Idle/blend_position = Vector2( 0, 1 )
 parameters/Run/blend_position = Vector2( -0.00633913, 0.0116732 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
